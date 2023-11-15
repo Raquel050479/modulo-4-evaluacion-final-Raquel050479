@@ -17,7 +17,7 @@ CREATE TABLE
         nombre varchar(30) not null,
         apellido varchar(50) not null,
         mail varchar(100) not null,
-        telefono tinyint not null
+        telefono tinyint
     );
 
 CREATE TABLE
