@@ -37,3 +37,9 @@ POST /registro
 
 **Login de una usuaria**
 POST /login
+
+## Tecnologías utilizadas
+Express JS, NodeJS, MySQL, HTML, CSS y Javascript
+
+## Herramientas utilizadas
+VSC, Github y MySQL Workbench
