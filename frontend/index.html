@@ -1,0 +1,106 @@
+<!-- frontend/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro e Inicio de Sesión</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <h1 class="title">Registro e Inicio de Sesión</h1>
+
+    <!-- Formulario de Registro -->
+    <h2>Registro</h2>
+    <form class="form" id="registroForm">
+      <label for="nombreRegistro">Nombre:</label>
+      <input type="text" id="nombreRegistro" name="nombreRegistro" required />
+
+      <label for="apellidoRegistro">Apellido:</label>
+      <input
+        type="text"
+        id="apellidoRegistro"
+        name="apellidoRegistro"
+        required
+      />
+
+      <label for="mailRegistro">Correo electrónico:</label>
+      <input type="email" id="mailRegistro" name="mailRegistro" required />
+
+      <label for="passRegistro">Contraseña:</label>
+      <input type="password" id="passRegistro" name="passRegistro" required />
+
+      <button class="btn" type="button" onclick="registrarUsuario()">
+        Registrar
+      </button>
+    </form>
+
+    <!-- Formulario de Inicio de Sesión -->
+    <h2>Iniciar Sesión</h2>
+    <form class="form" id="loginForm">
+      <label for="mailLogin">Correo electrónico:</label>
+      <input type="email" id="mailLogin" name="mailLogin" required />
+
+      <label for="passLogin">Contraseña:</label>
+      <input type="password" id="passLogin" name="passLogin" required />
+
+      <button class="btn" type="button" onclick="iniciarSesion()">
+        Iniciar Sesión
+      </button>
+    </form>
+
+    <script>
+      async function registrarUsuario() {
+        const nombre = document.getElementById('nombreRegistro').value
+        const apellido = document.getElementById('apellidoRegistro').value
+        const mail = document.getElementById('mailRegistro').value
+        const pass = document.getElementById('passRegistro').value
+
+        try {
+          const response = await fetch('http://localhost:3025/registro', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ nombre, apellido, mail, pass }),
+          })
+
+          const data = await response.json()
+          console.log(data)
+
+          alert(data.success ? 'Registro exitoso' : 'Error en el registro')
+        } catch (error) {
+          console.error('Error al realizar el registro:', error)
+          alert('Error en el registro')
+        }
+      }
+
+      async function iniciarSesion() {
+        const mail = document.getElementById('mailLogin').value
+        const pass = document.getElementById('passLogin').value
+
+        try {
+          const response = await fetch('http://localhost:3025/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ mail, pass }),
+          })
+
+          const data = await response.json()
+          console.log(data)
+
+          alert(
+            data.success
+              ? 'Inicio de sesión exitoso'
+              : 'Error en el inicio de sesión',
+          )
+        } catch (error) {
+          console.error('Error al iniciar sesión:', error)
+          alert('Error en el inicio de sesión')
+        }
+      }
+    </script>
+  </body>
+</html>
