@@ -15,3 +15,25 @@ entre Mongo y MySQL.
 
 ## Bonus
 - Registro y Login
+
+## ENDPOINTS
+**Listar todos los libros**
+GET /libros
+
+**Obtener un libro por su ID**
+GET /libros/:id
+
+**Crear un libro nuevo**
+POST /libros
+
+**Actualizar un libro existente**
+PUT /libros/:id
+
+**Eliminar un libro existente**
+DELETE /libros/:id
+
+**Registro de una usuaria**
+POST /registro
+
+**Login de una usuaria**
+POST /login
